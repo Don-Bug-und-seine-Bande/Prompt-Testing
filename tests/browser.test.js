@@ -98,6 +98,11 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   await expect(page.locator('#runCase')).toBeEnabled();
 
   mode = 'ok';
+  await page.locator('#clearAnswers').click();
+  await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
+  await expect(page.locator('#clearAnswers')).toBeDisabled();
+  await page.locator('#caseSelect').selectOption('8');
+  await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
   fs.writeFileSync(promptFile, '   ');
   await page.locator('#chatMessage').fill('Mensaje pendiente');
   await page.locator('#sendChat').click();

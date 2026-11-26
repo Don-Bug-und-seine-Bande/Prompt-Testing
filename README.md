@@ -35,7 +35,7 @@ Tené en cuenta:
 - **El modelo solo recibe el contenido de `prompts/actual.txt`**, además de los mensajes del chat. Si querés que conozca el catálogo, copialo en ese archivo.
 - No hace falta reiniciar el servidor al editar el prompt. Sí al cambiar `.env`.
 - Cada caso empieza sin historial. El chat libre lo conserva hasta que cambie el prompt.
-- Las respuestas se guardan solo en tu navegador.
+- Las respuestas se guardan solo en tu navegador. **Limpiar respuestas** borra las de todos los casos; **Nuevo chat** borra la conversación.
 
 ## Estructura
 

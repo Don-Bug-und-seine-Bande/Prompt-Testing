@@ -34,6 +34,7 @@
     const busy = Boolean(operation);
     for (const id of ['caseSelect', 'prevCase', 'nextCase', 'newChat']) $(id).disabled = busy || !lab;
     for (const id of ['runCase', 'sendChat']) $(id).disabled = busy || !connected || !lab;
+    $('clearAnswers').disabled = busy || !lab || !Object.keys(state.answers).length;
     $('cancelRun').hidden = !busy || operation.kind === 'chat';
     $('cancelChat').hidden = !busy || operation.kind !== 'chat';
   }
@@ -175,6 +176,13 @@
     $('prevCase').onclick = () => { index = (index - 1 + lab.tests.length) % lab.tests.length; renderCase(); };
     $('nextCase').onclick = () => { index = (index + 1) % lab.tests.length; renderCase(); };
     $('runCase').onclick = runCase;
+    $('clearAnswers').onclick = () => {
+      state.answers = {};
+      save();
+      renderCase();
+      $('operationError').hidden = true;
+      $('operationStatus').textContent = 'Se limpiaron las respuestas de los casos.';
+    };
     $('cancelRun').onclick = $('cancelChat').onclick = () => operation?.controller.abort();
     $('chatForm').onsubmit = sendChat;
     $('newChat').onclick = () => { state.messages = []; save(); renderChat(); };
