@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Claves y configuración local
+.env
+.env.*
+!.env.example
+
+# Logs y archivos generados
+*.log
+test-results/
+playwright-report/
+coverage/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
