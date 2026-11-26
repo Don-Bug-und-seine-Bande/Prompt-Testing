@@ -41,7 +41,7 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   await expect(page.locator('#promptStatus')).toContainText('listo');
   assert.deepEqual(await page.locator('#catalog tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent))),
     loadLab().products.map(row => row.map(String)));
-  await expect(page.locator('nav button')).toHaveCount(2);
+  await expect(page.locator('nav button')).toHaveCount(3);
   for (const id of ['promptInput', 'studentName', 'results', 'contextPreview', 'savePrompt', 'loadPrompt', 'exportReport', 'modelAnswer']) {
     await expect(page.locator('#' + id)).toHaveCount(0);
   }
@@ -52,6 +52,9 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   assert.equal(requests[0].input.length, 1);
   assert.equal(await page.evaluate(() => window.injected), undefined);
 
+  await page.locator('[data-tab="chat"]').click();
+  await expect(page.locator('#promptStatus')).toBeVisible();
+  await expect(page.locator('#runCase')).toBeHidden();
   await page.locator('#chatMessage').fill('Primera consulta');
   await page.locator('#sendChat').click();
   await expect(page.locator('#chatLog .chat-message')).toHaveCount(2);
@@ -69,6 +72,8 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   await expect(page.locator('#promptStatus')).toContainText('actualizado');
   await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
 
+  await page.locator('[data-tab="test"]').click();
+  await expect(page.locator('#chatMessage')).toBeHidden();
   await expect(page.locator('#runAll')).toHaveCount(0);
   await page.locator('#runCase').click();
   await expect(page.locator('#caseAnswer')).toContainText('Respuesta simulada 5');
@@ -104,6 +109,7 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   await page.locator('#caseSelect').selectOption('6');
   await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
   fs.writeFileSync(promptFile, '   ');
+  await page.locator('[data-tab="chat"]').click();
   await page.locator('#chatMessage').fill('Mensaje pendiente');
   await page.locator('#sendChat').click();
   await expect(page.locator('#operationError')).toContainText('vacío');

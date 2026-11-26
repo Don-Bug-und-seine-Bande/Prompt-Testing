@@ -26,8 +26,8 @@ Abrí http://localhost:3000. Las consultas consumen saldo de tu cuenta de API.
 ## Cómo se usa
 
 1. Escribí tu prompt en `prompts/actual.txt` y guardalo.
-2. En la web, abrí **2 · Chat y pruebas**.
-3. Probá un caso con **Probar este caso** o conversá en el chat libre.
+2. En la web, abrí **2 · Pruebas** o **3 · Chat libre**.
+3. En la pestaña 2, probá un caso con **Probar este caso**; en la 3, conversá libremente.
 4. Analizá las respuestas, ajustá el prompt y volvé a probar.
 
 Tené en cuenta:

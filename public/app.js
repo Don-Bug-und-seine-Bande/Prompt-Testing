@@ -171,6 +171,7 @@
     document.querySelectorAll('nav button').forEach(button => button.onclick = () => {
       document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b === button));
       document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('active', panel.id === button.dataset.tab));
+      $('promptCard').hidden = button.dataset.tab === 'brief';
     });
     $('caseSelect').onchange = event => { index = Number(event.target.value); renderCase(); };
     $('prevCase').onclick = () => { index = (index - 1 + lab.tests.length) % lab.tests.length; renderCase(); };
