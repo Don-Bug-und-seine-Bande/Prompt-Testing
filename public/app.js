@@ -84,11 +84,6 @@
     $('caseTitle').textContent = test.title;
     $('caseQuestion').textContent = test.q;
     $('expectedText').textContent = test.expected;
-    $('expectedChecks').replaceChildren(...test.checks.map(check => {
-      const item = document.createElement('li');
-      item.textContent = check;
-      return item;
-    }));
     $('caseAnswer').textContent = answer?.answer || 'Todavía no se probó este caso con el archivo actual.';
     $('caseAnswerMeta').textContent = answer ? describe(answer) : '';
     controls();

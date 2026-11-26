@@ -92,7 +92,6 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   await expect(page.locator('#expectedText')).toBeHidden();
   await page.locator('#caseExpected summary').click();
   await expect(page.locator('#expectedText')).toHaveText(loadLab().tests[0].expected);
-  await expect(page.locator('#expectedChecks li')).toHaveText(loadLab().tests[0].checks);
   await page.locator('#nextCase').click();
   await expect(page.locator('#expectedText')).toBeHidden();
   await page.locator('#prevCase').click();
