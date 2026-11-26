@@ -44,7 +44,7 @@ Tené en cuenta:
 | `prompts/actual.txt` | Prompt que usa el asistente |
 | `prompts/v0.txt` a `v2.txt` | Versiones de ejemplo del prompt |
 | `consigna_tienda_cuadros.md` | Consigna y catálogo |
-| `data/lab.json` | Diez casos de prueba |
+| `data/lab.json` | Siete casos de prueba |
 | `server.js`, `lib/` | Servidor y conexión con OpenAI |
 | `tienda_galeria_nube.html`, `public/` | Interfaz web |
 | `tests/` | Pruebas automáticas |

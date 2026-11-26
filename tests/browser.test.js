@@ -75,7 +75,7 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   assert.equal(requests.length, 5);
   assert.equal(requests.at(-1).instructions, 'Prompt editado desde un archivo');
   assert.equal(requests.at(-1).input.length, 1);
-  await page.locator('#caseSelect').selectOption('8');
+  await page.locator('#caseSelect').selectOption('6');
   await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
   await page.locator('#runCase').click();
   await expect(page.locator('#caseAnswer')).toContainText('Respuesta simulada 6');
@@ -101,7 +101,7 @@ test('archivo externo: chat, recarga automática, casos individuales y cancelaci
   await page.locator('#clearAnswers').click();
   await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
   await expect(page.locator('#clearAnswers')).toBeDisabled();
-  await page.locator('#caseSelect').selectOption('8');
+  await page.locator('#caseSelect').selectOption('6');
   await expect(page.locator('#caseAnswer')).toContainText('Todavía no');
   fs.writeFileSync(promptFile, '   ');
   await page.locator('#chatMessage').fill('Mensaje pendiente');

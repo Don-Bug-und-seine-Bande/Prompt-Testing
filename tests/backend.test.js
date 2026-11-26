@@ -37,7 +37,7 @@ test('sirve el HTML real y publica únicamente datos y recursos autorizados', as
   });
   assert.deepEqual(lab.products.map(p => p.map(value => typeof value === 'string' ? value.replace(' · ', ', ') : value)), catalogRows);
   assert.deepEqual(lab.policy, []);
-  assert.equal(lab.tests.length, 10);
+  assert.equal(lab.tests.length, 7);
   assert.equal(lab.products.find(p => p[0] === 'Ventana a Kioto')[4], 0);
   for (const resource of ['/.env', '/server.js', '/package.json', '/data/lab.json']) assert.equal((await api.get(resource)).status, 404);
   const health = await (await api.get('/api/health')).json();
