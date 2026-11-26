@@ -83,6 +83,12 @@
     $('caseNumber').textContent = `CASO ${index + 1} DE ${lab.tests.length}`;
     $('caseTitle').textContent = test.title;
     $('caseQuestion').textContent = test.q;
+    $('expectedText').textContent = test.expected;
+    $('expectedChecks').replaceChildren(...test.checks.map(check => {
+      const item = document.createElement('li');
+      item.textContent = check;
+      return item;
+    }));
     $('caseAnswer').textContent = answer?.answer || 'Todavía no se probó este caso con el archivo actual.';
     $('caseAnswerMeta').textContent = answer ? describe(answer) : '';
     controls();
@@ -173,9 +179,9 @@
       document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('active', panel.id === button.dataset.tab));
       $('promptCard').hidden = button.dataset.tab === 'brief';
     });
-    $('caseSelect').onchange = event => { index = Number(event.target.value); renderCase(); };
-    $('prevCase').onclick = () => { index = (index - 1 + lab.tests.length) % lab.tests.length; renderCase(); };
-    $('nextCase').onclick = () => { index = (index + 1) % lab.tests.length; renderCase(); };
+    $('caseSelect').onchange = event => { index = Number(event.target.value); $('caseExpected').open = false; renderCase(); };
+    $('prevCase').onclick = () => { index = (index - 1 + lab.tests.length) % lab.tests.length; $('caseExpected').open = false; renderCase(); };
+    $('nextCase').onclick = () => { index = (index + 1) % lab.tests.length; $('caseExpected').open = false; renderCase(); };
     $('runCase').onclick = runCase;
     $('clearAnswers').onclick = () => {
       state.answers = {};
